@@ -43,7 +43,10 @@ class MYAPP2 extends State {
       appBar: AppBar(
         title: Title(
           color: Colors.black,
-          child: Text("thes my projecte"),
+          child: Text(
+            "thes my pro",
+            style: TextStyle(fontSize: 20),
+          ),
           title: "my home paj",
         ),
       ),

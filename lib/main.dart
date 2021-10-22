@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 //enum MagicDirection { vertical, horizental }
 void main() {
@@ -16,26 +17,9 @@ class MYAPP extends StatefulWidget {
 }
 
 class MYAPP2 extends State {
-  final GlobalKey<FormState> mykey = GlobalKey();
-  Map<String, String> _Data = {"Email": "", "pass": ""};
-  void switsh() {
-    if (ST == stat.ligin) {
-      setState(() {
-        ST = stat.singup;
-      });
-    } else
-      setState(() {
-        ST = stat.ligin;
-      });
-  }
-
-  void supmit() {
-    if (!mykey.currentState.validate())
-      return;
-    else
-      mykey.currentState.save();
-  }
-
+  final listnew = List<String>.generate(50, (index) {
+    return "item $index";
+  });
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,38 +35,77 @@ class MYAPP2 extends State {
         ),
       ),
       body: Center(
-        child: Form(
-            key: mykey,
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "inter yuor email", labelText: "E_mail"),
-                  validator: (valu) {
-                    if (valu.isEmpty || !valu.contains("@")) {
-                      return "Email is unvalied";
-                    }
+        child: ListView.builder(
+            itemCount: listnew.length,
+            itemBuilder: (cont, ind) {
+              final LI = listnew[ind];
+              return Dismissible(
+                key: Key(LI),
+                background: Container(
+                  color: Colors.red,
+                  alignment: Alignment.centerLeft,
+                  child: Icon(Icons.delete),
+                ),
+                child: ListTile(
+                  title:
+                      Container(alignment: Alignment.center, child: Text(LI)),
+                ),
+                onDismissed: (DismissDirection di) {
+                  if (di == DismissDirection.startToEnd) {
+                    setState(() => listnew.removeAt(ind));
+                    final snk = SnackBar(
+                      content: const Text('Are yuo suore you wont Delete '),
+                      action: SnackBarAction(
+                        label: 'NO',
+                        onPressed: () {
+                          setState(() => listnew.insert(ind, LI));
+                        },
+                      ),
+                    );
+                    ScaffoldMessenger.of(cont).showSnackBar(snk);
+                  } else
                     return null;
-                  },
-                  onSaved: (valu) {
-                    _Data['Email'] = valu;
-                  },
+                },
+                secondaryBackground: Container(
+                  color: Colors.green,
+                  alignment: Alignment.centerRight,
+                  child: Icon(Icons.thumb_up),
                 ),
-                ElevatedButton(
-                  child: Text(ST == stat.ligin ? "login" : "singup"),
-                  onPressed: supmit,
-                ),
-                ElevatedButton(
-                  child:
-                      Text("${ST == stat.ligin ? "login" : "singup"} instade"),
-                  onPressed: switsh,
-                )
-              ],
-            )),
+                confirmDismiss: (DismissDirection dico) async {
+                  if (dico == DismissDirection.startToEnd) {
+                    final str = await showDialog(
+                        context: cont,
+                        builder: (BuildContext cont) {
+                          return AlertDialog(
+                            //title: Text("lirjfilakjef  iejfioewf ejfij"),
+                            content: Text("lirjfilakjef  iejfioewf ejfij"),
+
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(cont).pop();
+                                }, // passing false
+                                child: Text('No'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    listnew.removeAt(ind);
+                                  });
+                                  Navigator.of(cont).pop();
+                                }, // passing true
+                                child: Text('Yes'),
+                              ),
+                            ],
+                          );
+                        });
+                    return str;
+                  } else
+                    return true;
+                },
+              );
+            }),
       ),
     ));
   }
 }
-
-enum stat { ligin, singup }
-stat ST = stat.ligin;

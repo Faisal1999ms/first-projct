@@ -112,7 +112,7 @@ class myappless extends State {
                           color: Color.fromRGBO(254, 254, 254, 1),
                         ),
                         margin: EdgeInsets.all(15),
-                        width: 350,
+                        width: 370,
                         //padding: EdgeInsets.only(right: 22),
                         alignment: Alignment.center,
                         child: Image.asset(
@@ -310,8 +310,54 @@ class myappless extends State {
       ),
     ),
     Scaffold(
-      body: Center(
-        child: Text("Page2"),
+      body: Column(
+        children: [
+          ListTile(
+            title: Text(
+              "Browse",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 10),
+            width: double.infinity,
+            height: 1,
+            color: Colors.black38,
+          ),
+          ListTile(
+            leading: Icon(Icons.trending_up_sharp),
+            title: Text("Business"),
+            subtitle: Text("Bussiness topics from LinkedIn Learning"),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 70),
+            width: double.infinity,
+            height: 1,
+            color: Colors.black38,
+          ),
+          ListTile(
+            leading: Icon(Icons.create),
+            title: Text("Creative"),
+            subtitle: Text("Creative topics from LinkedIn Learning"),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 70),
+            width: double.infinity,
+            height: 1,
+            color: Colors.black38,
+          ),
+          ListTile(
+            leading: Icon(Icons.feed_outlined),
+            title: Text("Technology"),
+            subtitle: Text("Technology topics from LinkedIn Learning"),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 70),
+            width: double.infinity,
+            height: 1,
+            color: Colors.black38,
+          )
+        ],
       ),
     ),
     Scaffold(

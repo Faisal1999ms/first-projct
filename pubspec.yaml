@@ -54,6 +54,13 @@ flutter:
   assets:
     - lib/imges/wi-fi.jpg
     - lib/imges/imag.jpg
+    - lib/imges/22.png
+    - lib/imges/44.png
+    - lib/imges/55.jpg
+    - lib/imges/66.jpg
+    - lib/imges/77.jpg
+    - lib/imges/88.jpg
+    
      
 
   # An image asset can refer to one or more resolution-specific "variants", see

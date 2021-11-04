@@ -17,6 +17,8 @@ class MYAPP extends StatefulWidget {
 class myappless extends State {
   @override
   Widget build(BuildContext context) {
+    // double sizeW = MediaQuery.of(context).size.width;
+    // double sizeH = MediaQuery.of(context).size.height;
     // TODO: implement build
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -34,9 +36,10 @@ class myappless extends State {
                     fontWeight: FontWeight.bold),
               ),
               Text("LEARNING"),
-              SizedBox(
-                width: 300,
-              ),
+              // SizedBox(
+              //   width: 200,
+              // ),
+              Spacer(),
               IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.search),
@@ -74,7 +77,7 @@ class myappless extends State {
           title: Text("in LEARNING"),
           leading: Icon(Icons.search_sharp),
         ),
-        body: pages[pagenumeritme],
+        body: newMethod1[pagenumeritme],
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.black54,
@@ -92,7 +95,11 @@ class myappless extends State {
   }
 
   int pagenumeritme = 0;
-//final List<String> item =List.generate(70, (index) => "item:$index");
+
+  List<Widget> get newMethod1 {
+    pages;
+  }
+
   List<Widget> pages = [
     Scaffold(
       body: SingleChildScrollView(
@@ -116,7 +123,7 @@ class myappless extends State {
                         //padding: EdgeInsets.only(right: 22),
                         alignment: Alignment.center,
                         child: Image.asset(
-                          "lib/imges/44.png",
+                          "lib/imges/99.png",
                           fit: BoxFit.fitWidth,
                         ),
                       );
@@ -130,7 +137,7 @@ class myappless extends State {
                 height: 40,
                 color: Color.fromRGBO(254, 254, 254, 1),
                 child: Text(
-                  "Top picks for Faisal",
+                  "Categoriez",
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -138,171 +145,64 @@ class myappless extends State {
                 ),
               ),
               Container(
-                height: 150,
+                height: 320,
                 width: double.infinity,
-                color: Color.fromRGBO(254, 254, 254, 1),
+                // color: Color.fromRGBO(254, 254, 254, 1),
+                color: Color.fromRGBO(232, 232, 232, 1),
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: new AssetImage('lib/imges/imag.jpg'),
-                            fit: BoxFit.fill,
+                      return Expanded(
+                        child: Container(
+                          width: 300,
+                          height: 270,
+                          margin: EdgeInsets.only(right: 10, left: 10),
+                          child: Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.account_balance_rounded,
+                                  ),
+                                  Text("data for all day",
+                                      textAlign: TextAlign.left)
+                                ],
+                              ),
+                              Container(
+                                // margin: EdgeInsets.only(right: 10, left: 10),
+                                height: 280,
+                                width: 300,
+                                color: Color.fromRGBO(254, 254, 254, 1),
+                                child: ListView.separated(
+                                    separatorBuilder: ((cotext, index) =>
+                                        Divider()),
+                                    itemCount: 40,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                          leading: Icon(Icons.access_time),
+                                          tileColor: Colors.blue,
+                                          title: Text(
+                                            "the listView:$index",
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40.0),
+                                          ));
+                                    }),
+                              ),
+                            ],
                           ),
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.blueGrey,
                         ),
-                        width: 250,
-                        margin: EdgeInsets.only(right: 22),
+
+                        // width: double.infinity,
+                        // margin: EdgeInsets.only(right: 22),
+                        // height: 250,
                       );
                     },
                     separatorBuilder: (cont, index) => Divider(),
-                    itemCount: 70),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                width: double.infinity,
-                height: 40,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: Text(
-                  "New Releases",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Container(
-                height: 150,
-                width: double.infinity,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: new AssetImage('lib/imges/88.jpg'),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.blueGrey,
-                        ),
-                        width: 250,
-                        margin: EdgeInsets.only(right: 22),
-                      );
-                    },
-                    separatorBuilder: (cont, index) => Divider(),
-                    itemCount: 70),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                width: double.infinity,
-                height: 40,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: Text(
-                  "Live office hours with experts ",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Container(
-                height: 150,
-                width: double.infinity,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: new AssetImage('lib/imges/77.jpg'),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.blueGrey,
-                        ),
-                        width: 250,
-                        margin: EdgeInsets.only(right: 22),
-                      );
-                    },
-                    separatorBuilder: (cont, index) => Divider(),
-                    itemCount: 70),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                width: double.infinity,
-                height: 40,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: Text(
-                  "This week's top courses",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Container(
-                height: 150,
-                width: double.infinity,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: new AssetImage('lib/imges/66.jpg'),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.blueGrey,
-                        ),
-                        width: 250,
-                        margin: EdgeInsets.only(right: 22),
-                      );
-                    },
-                    separatorBuilder: (cont, index) => Divider(),
-                    itemCount: 70),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                width: double.infinity,
-                height: 40,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: Text(
-                  "Popular on LinkedIn learning",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Container(
-                height: 150,
-                width: double.infinity,
-                color: Color.fromRGBO(254, 254, 254, 1),
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: new AssetImage('lib/imges/55.jpg'),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.blueGrey,
-                        ),
-                        width: 250,
-                        margin: EdgeInsets.only(right: 22),
-                      );
-                    },
-                    separatorBuilder: (cont, index) => Divider(),
-                    itemCount: 70),
+                    itemCount: 3),
               ),
             ],
           ),
@@ -361,9 +261,52 @@ class myappless extends State {
       ),
     ),
     Scaffold(
-      body: Center(
-        child: Text("Page3"),
-      ),
-    ),
+      body: ListView.separated(
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Container(
+                  height: 100,
+
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromRGBO(254, 254, 254, 1),
+                  ),
+                  margin: EdgeInsets.all(22),
+                  width: double.infinity,
+                  //padding: EdgeInsets.only(right: 22),
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    "lib/imges/99.png",
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text("somthing alas for my student "),
+                    Spacer(),
+                    Row(
+                      children: List.generate(5, (index) {
+                        return Icon(
+                          index < 5 ? Icons.star : Icons.star_border,
+                        );
+                      }),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text("somthing alas for raeding "),
+                    Spacer(),
+                    Text("7.5Km")
+                  ],
+                )
+              ],
+            );
+          },
+          separatorBuilder: (cont, index) => Divider(),
+          itemCount: 70),
+    )
   ];
 }

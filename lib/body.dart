@@ -11,10 +11,13 @@ class tetegrambody extends StatelessWidget {
         itemCount: li.length,
         itemBuilder: (context, ind) {
           return ListTile(
-            title: Text(li[ind].te),
+            title: Text(
+              li[ind].te,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
             subtitle: Text(
               "Telecom&Network Tutorials",
-              style: TextStyle(color: Colors.white54),
+              style: Theme.of(context).textTheme.bodyText2,
             ),
             leading: CircleAvatar(
               backgroundImage: li[ind].im,
@@ -24,7 +27,7 @@ class tetegrambody extends StatelessWidget {
               child: Center(
                   child: Text(
                 "${li[ind].num}",
-                style: TextStyle(fontSize: 10),
+                style: Theme.of(context).textTheme.bodyText2,
               )),
             ),
           );

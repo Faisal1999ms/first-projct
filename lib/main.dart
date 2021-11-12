@@ -14,35 +14,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<ThemeMode> _notifier = ValueNotifier(ThemeMode.light);
-    return ValueListenableBuilder<ThemeMode>(
-        valueListenable: _notifier,
-        builder: (_, mode, __) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.dark,
-            theme: ThemeData(
-              primaryColor: Colors.blue,
-              canvasColor: Color.fromRGBO(240, 240, 240, 1),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+        textTheme: ThemeData.dark().textTheme.copyWith(
+            bodyText1: TextStyle(color: Colors.black, fontSize: 20),
+            bodyText2: TextStyle(color: Colors.black)),
+        primaryColor: Colors.blue,
+        canvasColor: Color.fromRGBO(240, 240, 240, 1),
+        iconTheme: ThemeData.light().iconTheme.copyWith(
+              color: Colors.black,
             ),
-            darkTheme: ThemeData(
-              textTheme:
-                  Theme.of(context).textTheme.apply(bodyColor: Colors.white),
-              primaryColor: Color.fromRGBO(23, 33, 43, 1),
-              canvasColor: Color.fromRGBO(14, 22, 33, 1),
-              iconTheme: Theme.of(context).iconTheme.copyWith(
-                    color: Colors.white,
-                  ),
+      ),
+      darkTheme: ThemeData(
+        textTheme: ThemeData.light().textTheme.copyWith(
+            bodyText1: TextStyle(color: Colors.white),
+            bodyText2: TextStyle(color: Colors.white)),
+        primaryColor: Color.fromRGBO(23, 33, 43, 1),
+        canvasColor: Color.fromRGBO(14, 22, 33, 1),
+        iconTheme: ThemeData.light().iconTheme.copyWith(
+              color: Colors.white,
             ),
-            home: Homepage(),
-          );
-        });
+      ),
+      home: Homepage(),
+    );
   }
 }
 
 class Homepage extends StatefulWidget {
-  Homepage({Key key}) : super(key: key);
-
   @override
   _HomepageState createState() => _HomepageState();
 }
@@ -90,14 +90,18 @@ class _HomepageState extends State<Homepage> {
                                 Icons.wb_sunny,
                                 color: Colors.white,
                               ),
-                              onPressed: () {})
+                              onPressed: () {
+                                setState(() {
+                                  //ThemeMode=Theme(data:ThemeData.dark() , child:null);
+                                });
+                              })
                         ],
                       ),
                       Spacer(),
                       ListTile(
                         title: Text(
                           "ALFISAL Masalmeh",
-                          style: TextStyle(fontSize: 20),
+                          style: Theme.of(context).textTheme.bodyText2,
                         ),
                         subtitle: Text("+963 99_8217491"),
                         trailing: Icon(
@@ -141,10 +145,13 @@ class _HomepageState extends State<Homepage> {
 
   ListTile listdrwor(String T, IconData I) {
     return ListTile(
-      title: Text(T),
+      title: Text(
+        T,
+        style: Theme.of(context).textTheme.bodyText2,
+      ),
       leading: Icon(
         I,
-        color: Colors.white,
+        color: Theme.of(context).iconTheme.color,
       ),
     );
   }
